@@ -8,3 +8,15 @@ before_install:
 
 script:
   - docker run -e CI=true thabisomagwaza/frontend-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'docker-react'
+  env: 'Dockerreact-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-582489673054'
+  bucket_path: 'docker-react'
+  on:
+    branch: master
+  access_key_id: '$AWS_ACCESS_KEY_TUT'
+  secrete_access_key: '$AWS_SECRET_KEY_TUT'
